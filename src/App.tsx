@@ -12,7 +12,13 @@ function App() {
       <header className="bg-nebula-900/90 border-b border-nebula-700/50 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-nebula-50 flex items-center">
-            <Sparkles className="mr-2 text-nebula-100" size={24} />
+          <img 
+            src="src/assets/nova-nexus-icon.svg" 
+            alt="Nova Nexus" 
+            className="mr-2" 
+            width="50" 
+            height="50" 
+          />
             NovaNexus
           </h1>
           <a 
