@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import { Send, User, Bot, UtensilsCrossed } from 'lucide-react';
 
 const restaurants = [
-  { id: 1, name: "Bella Italia", cuisine: "Italian" },
-  { id: 2, name: "Sushi Express", cuisine: "Japanese" },
-  { id: 3, name: "Taj Mahal", cuisine: "Indian" },
-  { id: 4, name: "Le Bistro", cuisine: "French" },
-  { id: 5, name: "El Mariachi", cuisine: "Mexican" }
+  { id: 1, name: "Burger Fuel New Zealand", cuisine: "Fast Food" }
 ];
 
 interface Message {
@@ -42,13 +38,13 @@ export function RestaurantChat() {
     ]);
   };
 
-  const sendMessage = (e: React.FormEvent) => {
+  const sendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!message.trim()) return;
-
+  
     const restaurant = restaurants.find(r => r.id.toString() === selectedRestaurant);
-    
-    // Add user message
+  
+    // Add user message to UI
     const newMessages = [
       ...messages,
       {
@@ -57,22 +53,48 @@ export function RestaurantChat() {
         sender: 'user'
       }
     ];
-    
+  
     setMessages(newMessages);
     setMessage('');
-    
-    // Simulate bot response
-    setTimeout(() => {
+  
+    try {
+      // Send message to n8n workflow
+      const response = await fetch("https://novanexus.app.n8n.cloud/webhook/3e4a34c4-5625-4774-a530-641f965d4037/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          restaurant_id: selectedRestaurant, // Pass restaurant ID
+          user_message: message
+        })
+      });
+  
+      const data = await response.json();
+  
+      // Append bot response
       setMessages([
         ...newMessages,
         {
           id: newMessages.length + 1,
-          text: `Thanks for your question about ${restaurant?.name}. Our ${restaurant?.cuisine} menu includes a variety of options. What specific dishes are you interested in?`,
+          text: data.output || `I'm sorry, I couldn't retrieve a response.`,
           sender: 'bot'
         }
       ]);
-    }, 1000);
+  
+    } catch (error) {
+      console.error("Error fetching chatbot response:", error);
+      setMessages([
+        ...newMessages,
+        {
+          id: newMessages.length + 1,
+          text: "Oops! Something went wrong. Please try again.",
+          sender: 'bot'
+        }
+      ]);
+    }
   };
+  
 
   return (
     <div className="space-y-6">
