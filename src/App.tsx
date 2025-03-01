@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './components/ui/tabs';
 import { RestaurantChat } from './components/RestaurantChat';
 import { VideoCreator } from './components/VideoCreator';
@@ -66,10 +66,27 @@ function App() {
       </main>
       
       <footer className="bg-nebula-900/90 border-t border-nebula-700/50 backdrop-blur-sm mt-auto">
-        <div className="container mx-auto px-4 py-4 text-center text-nebula-300">
-          © 2025 NovaNexus. All rights reserved.
+        <div className="container mx-auto px-4 py-4 text-center text-nebula-300 flex flex-col md:flex-row justify-center items-center gap-4">
+          <span>© 2025 NovaNexus playground. All rights reserved.</span>
+
+          <a
+            href="https://www.linkedin.com/in/ravi-bhatt-219a10ab/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-nebula-400 hover:text-nebula-200 transition-colors flex items-center gap-2"
+          >
+            <FaLinkedin className="text-blue-500" size={20} /> LinkedIn 
+          </a>
+
+          <a
+            href="mailto:oceanicravi@gmail.com"
+            className="text-nebula-400 hover:text-nebula-200 transition-colors flex items-center gap-2"
+          >
+            <FaEnvelope className="text-red-500" size={20} /> Mail
+          </a>
         </div>
       </footer>
+
     </div>
   );
 }
