@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-nebula-900 text-nebula-50;
+}
+
+.bg-nebula-gradient {
+  background: linear-gradient(135deg, #0B0B2B 0%, #2C2C6A 25%, #5151AA 50%, #A36DC8 75%, #F589E6 90%, #FFF0FF 100%);
+  background-size: 400% 400%;
+  animation: nebula-flow 15s ease infinite;
+}
+
+@keyframes nebula-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
