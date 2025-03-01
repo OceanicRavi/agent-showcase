@@ -13,7 +13,7 @@ function App() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <h1 className="text-2xl font-bold text-nebula-50 flex items-center">
           <img 
-            src="src/assets/nova-nexus-icon.svg" 
+            src="/assets/nova-nexus-icon.svg" 
             alt="Nova Nexus" 
             className="mr-2" 
             width="50" 
