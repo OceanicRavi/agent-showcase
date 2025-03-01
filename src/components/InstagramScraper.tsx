@@ -13,7 +13,7 @@ export function InstagramScraper() {
   const [error, setError] = useState(null);
 
   // Default Images
-  const DEFAULT_PROFILE_IMAGE = "src/assets/default_insta_profile.webp";
+  const DEFAULT_PROFILE_IMAGE = "/assets/default_insta_profile.webp";
   const DEFAULT_POST_IMAGE = "https://via.placeholder.com/500";
 
   const handleChange = (e) => {
